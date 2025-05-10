@@ -1,5 +1,4 @@
 import axios from "axios"
-import App from "../App"
 
 const base_url = "http://localhost:3001/api/notes"
 

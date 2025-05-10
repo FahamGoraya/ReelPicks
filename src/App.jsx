@@ -21,7 +21,6 @@ function App() {
     <>
     <ul>
     {note.map( n => <li key={n.id}>{n.content}</li>)}
-
     </ul>
 
     </>
