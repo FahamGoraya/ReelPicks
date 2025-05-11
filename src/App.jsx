@@ -1,28 +1,27 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,createContext, useContext } from 'react'
 import Movies_service from './service/Movies_service'
+import { useNavigate } from 'react-router'
+import {cont} from './main'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [note,setNotes] = useState([])
-  
-  const hook=()=>{
-    Movies_service.getMovies()
-    .then((result) =>{
-      setNotes(result)
-      console.log(result)
-    })
+  const navigae = useNavigate()
+  const movie = useContext(cont)  
 
+  const handle_importance=(event)=>{
+    console.log("yesa")
+    navigae('/importance')
   }
 
-  useEffect(hook,[])
+
    
 
   return (
     <>
     <ul>
-    {note.map( n => <li key={n.id}>{n.content}</li>)}
+    {movie.map( n => <li key={n.id}>{n.content}</li>)}
     </ul>
-
+    <button onClick={handle_importance}>Check out importance</button>
     </>
   )
 }

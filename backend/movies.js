@@ -26,42 +26,23 @@ let notes = [
   }
 ]
 
-  app.get('/api/notes', (request, response) => {
+  app.get('/api/persons',(request,response)=>{
     response.json(notes)
-  })
+  }
+  )
 
-  app.post('/api/notes', (request, response) => {
-    const maxId = notes.length > 0
-      ? Math.max(...notes.map(n => Number(n.id))) 
-      : 0
-  
-    const note = request.body
-    note.id = String(maxId + 1)
-  
-    notes = notes.concat(note)
-  
-    response.json(note)
-  })
-  
-
-  app.get('/api/notes/:id', (request, response) => {
+  app.get('/api/persons/:id',(request,response)=>{
     const id = request.params.id
-    const note = notes.find(note => note.id === id)
-    
-    if (note) {
-      response.json(note)
-    } else {
+    const temp = notes.filter(n=>n.id===id)
+    if(temp.length>0){
+      response.json(temp)
+    }
+    else{
       response.status(404).end()
     }
+
   })
 
-  app.delete('/api/notes/:id', (request, response) => {
-    const id = request.params.id
-    notes = notes.filter(note => note.id !== id)
-  
-    response.status(204).end()
-  })
-  
   
 
 
