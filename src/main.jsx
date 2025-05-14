@@ -1,61 +1,30 @@
 import { StrictMode,useState,useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
+import App from './pages/App.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router'
-import Importance from './Importance.jsx'
 import { createContext } from 'react'
-import Movies_service from './service/Movies_service.js'
-
-export const cont = createContext([])
+import Signup from './pages/signUp_Page.jsx'
+import Movie_page from './pages/Movie_page/Movie_page.jsx'
 
 const router = createBrowserRouter([{
 path: "/",
-element: <App />
+element: <Signup />
+}
+,
+{
+  path: "/home",
+  element:<App/>
+
 },
 {
-  path: "/importance",
-  element:<Importance/>
-
+  path: "/home/:id",
+  element:<Movie_page/>
 }
 ])
 
 const R =()=>{
-  const [movie,setMovies] = useState(null)
-
-  const hook =()=>{
-    Movies_service.getMovies()
-    .then(result=>
-    {
-      setMovies(result)
-    }
-    )
-  }
-
-  useEffect(hook,[])
-  
-  if(movie == null){
-    return(
-      <>
-      <h1>Data Loading</h1>
-      </>
-    )
-  }
-
-
-
-  return(
-    <cont.Provider value={movie}>
-      <RouterProvider router={router} />
-    </cont.Provider>
-    
-
-  )
-
+  return (<RouterProvider router={router} />)
 }
-
-
-
-
 
   createRoot(document.getElementById('root')).render( 
     <R/>
