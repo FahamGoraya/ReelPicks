@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.Footer_logo{
+    font-family: 'Anton';
+    color: #5ce1e6;
+    font-weight: bolder;  
+    font-size: x-large;
+    padding-left: 2rem;
+}
+
+
+.header-hbox {
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  background-color: #2e2d2c;
+  
+  
+}
+
+
+.nav-button {
+  padding: 0rem 4rem;
+  font-family: 'DM Sans';
+  color: white;
+  background-color: #2e2d2c;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: bolder;
+}
+
+.nav-button:hover{
+    background-color: #5ce1e6 ;
+    background-size: 150%;
+    
+}
+
+.cover{
+    max-width: auto;
+    background-color: #2e2d2c;
+
+}

@@ -21,10 +21,34 @@ const getMovieDetails =(id)=>{
     return promise.then( (v)=>v.data)
 }
 
+const getMovieGenre =()=>{
+    const promise = axios.get("http://localhost:3001/api/genre")
+    return promise.then( (v)=>v.data)
+}
+
+const Fillter_movie_genre=(genre,genre_id)=>{
+    let ans = []
+    let temp = []
+    for (var g in genre_id){
+        temp = genre.filter((m)=>{
+            if(genre_id[g] === m.id){
+                return true
+            }
+            return false
+        })        
+        ans = ans.concat(temp)
+    }
+    return ans
+
+}
+
 
 export default {
     getTrend,
     getTop,
     getComing,
-    getMovieDetails
+    getMovieDetails,
+    getMovieGenre,
+    Fillter_movie_genre
+
 }

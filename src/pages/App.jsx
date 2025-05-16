@@ -2,11 +2,11 @@ import { useState,useEffect,createContext, useContext } from 'react'
 import Movies_service from '../service/Movies_service'
 import { useNavigate } from 'react-router'
 import Display_movies from '../components/Display_movies'
-import axios from 'axios'
 import './App.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import Slider from 'react-slick'
+import Header_move from '../components/Header_move'
 
 
 
@@ -15,10 +15,11 @@ function App() {
   const [trending,setTrending] = useState(null)
   const [top,setTop] = useState(null)
   const [coming,setComing] = useState(null)
+  const [genre,setGenre] = useState(null)
 
    const settings = {
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -35,6 +36,10 @@ function App() {
         setTrending(temp.results)
         temp = await Movies_service.getComing()
         setComing(temp.results)
+        temp = await Movies_service.getMovieGenre()
+        setGenre(temp)
+        
+
       }
       catch(err){
         console.log("Error")
@@ -82,36 +87,14 @@ function App() {
 
   return (
     <>
-    <div className='Movieplace'>
-    <h1 className="Scrolheading">Top Movies</h1>  
-    <div className='MovieSlider'>
+    <Header_move/>
+    <div className='MoveSliderdiv'>
+    <h1 className='MovieTypeHeading'>Upcoming</h1>
     <Slider {...settings}>
-    {top.map( n => <Display_movies key={n.id} n={n} /> )}
+    {coming.map( result => <Display_movies key={result.id} n={result} genre={genre} /> )}
     </Slider>
     </div>
-    </div>
-
-    <div className='Movieplace'>
-    <h1 className="Scrolheading">Trending Movies</h1>
     
-    <div className='MovieSlider'>
-    <Slider {...settings}>
-    {trending.map( n => <Display_movies key={n.id} n={n} /> )}
-    </Slider>
-    </div>
-    </div>
-    <div className='Movieplace'>
-    <h1 className="Scrolheading">Upcoming Movies</h1>
-    </div>
-    <div className='Movieplace'>
-    <div className='MovieSlider'>
-    <Slider {...settings}>
-    {coming.map( n => <Display_movies key={n.id} n={n} /> )}
-    </Slider>
-    </div>
-    </div>
-
-
 
     </>
   )
