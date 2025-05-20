@@ -31,7 +31,7 @@
   font-family: 'DM Sans';
   color: white;
   font-size: 1.4rem;
-  
+  max-width: 450px;
   padding-left: 3rem;
 }
 
@@ -47,16 +47,48 @@
   padding-left: 3rem;
   
 }
+.Moviebtitleinfo{
+    font-family: 'DM Sans';
+  color: white;
+  padding-left: 3rem;
+  max-width: 500px;
+
+}
 .Movieinfo{
   font-family: 'DM Sans';
   color: white;
   padding-left: 3rem;
-  padding-bottom: 25rem
+  padding-bottom: 3rem;
+  max-width: 450px;
+   
 }
+.MovieRating{
+  padding-left: 6rem;
+  padding-bottom: 3rem;
+}
+
 .movieGenre{
+  font-family: 'DM Sans';
+  color: white;
+}
+
+
+.movieTopSlider{
+    max-width: 1030px;
+    max-height: 550px;
+    margin: 30px auto;
+}
+
+.movieComingHeading{
+  padding-top: 10rem;
   font-family: 'DM Sans';
   color: white;
 
 }
 
+.movieTopHeading{
+  padding-top: 2rem;
+  font-family: 'DM Sans';
+  color: white;
+}
 

@@ -2,8 +2,15 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 app.use(express.json())
+const origins = ['http://localhost:5173', 'http://10.0.0.26:5173']
 app.use(cors({
-  origin: 'http://localhost:5173', 
+    origin: function (origin, callback) {
+    if (!origin || origins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }))
@@ -218,7 +225,7 @@ const genres = [
 
 
   const PORT = 3001
-  app.listen(PORT, () => {
+  app.listen(PORT , () => {
     console.log(`Server running on port ${PORT}`)
   })
   
