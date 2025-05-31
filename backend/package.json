@@ -7,11 +7,11 @@
   "main": "movies.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch movies.js",
+    "dev": "node --watch main_info.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node index.js"
+    "start": "node main_info.js"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
