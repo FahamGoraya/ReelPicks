@@ -6,9 +6,6 @@
   background-color: #000000;
 }
 
-.my-Loadingbg{
-    background-color: #321010;
-}
 
 .MoveSliderdiv{
     max-width: 1100px;
@@ -90,5 +87,20 @@
   padding-top: 2rem;
   font-family: 'DM Sans';
   color: white;
+}
+
+.LoadingData{
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  font-size: 5rem;
+
+}
+.LoadingDataDiv{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+
 }
 

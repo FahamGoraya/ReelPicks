@@ -1,13 +1,13 @@
 import { useState,useEffect,createContext, useContext } from 'react'
 import Movies_service from '../service/Movies_service'
 import { useNavigate } from 'react-router'
-import Display_movies_with_info from '../components/Display_movies_with_info'
-import Display_movies_without_info from '../components/Display_movies_without_info'
+import Display_movies_with_info from '../components/Home-page-components/Display_movies_with_info'
+import Display_movies_without_info from '../components/Home-page-components/Display_movies_without_info'
 import './App.css'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import Slider from 'react-slick'
-import Header_move from '../components/Header_move'
+import Header_move from "../components/Home-page-components/Header_move"
 
 
 
@@ -68,20 +68,14 @@ function App() {
   
 
     useEffect(() => {
-      if(loading===true){
-        document.body.classList.add('my-Loadingbg')
-      }
-      else{
-            document.body.classList.add('my-dark-bg')
-      }
+      document.body.classList.add('my-dark-bg')
+      
 
     return () => {
-      if(loading===true){
-        document.body.classList.remove('my-Loadingbg')
-      }
-      else{
-        document.body.classList.remove('my-dark-bg')
-      }
+ 
+     
+      document.body.classList.remove('my-dark-bg')
+      
 
     };
     }, [loading]);
@@ -90,7 +84,11 @@ function App() {
 
   if(loading===true){
     return(
-      <h1 className='LoadingData'>Loading data pls wait!</h1>
+      <div className='LoadingDataDiv'>
+
+      
+      <h1 className='LoadingData'>Loading data!</h1>
+      </div>
     )
   }
 

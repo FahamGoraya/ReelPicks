@@ -17,7 +17,7 @@ const getComing =()=>{
 }
 
 const getMovieDetails =(id)=>{
-    const promise = axios.get(`http://10.0.0.26:3001/api/movies/${id}`)
+    const promise = axios.get(`http://10.0.0.26:3001/api/movies/${id}/info`)
     return promise.then( (v)=>v.data)
 }
 

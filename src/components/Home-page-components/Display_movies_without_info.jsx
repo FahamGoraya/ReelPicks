@@ -1,5 +1,5 @@
 
-import '../pages/App.css'
+import "../../pages/App.css"
 import { Link } from 'react-router'
  
 

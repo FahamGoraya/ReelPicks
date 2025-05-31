@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import App from './pages/App.jsx'
 import { createBrowserRouter,RouterProvider } from 'react-router'
 import { createContext } from 'react'
-import Signup from './pages/signUp_Page.jsx'
+import Login_page from './pages/Login_Page.jsx'
 import Movie_page from './pages/Movie_page/Movie_page.jsx'
 
 const router = createBrowserRouter([{
 path: "/",
-element: <Signup />
+element: <Login_page />
 }
 ,
 {

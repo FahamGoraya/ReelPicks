@@ -1,8 +1,8 @@
 
-import '../pages/App.css'
-import { Link } from 'react-router'
+import "../../pages/App.css"
+import { Link } from 'react-router';
 import { Grid, Paper } from '@mui/material';
-import Movies_service from '../service/Movies_service';
+import Movies_service from '../../service/Movies_service';
 import { Rating } from '@smastrom/react-rating';
 import '@smastrom/react-rating/style.css';
  
