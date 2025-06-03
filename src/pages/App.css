@@ -1,106 +1,93 @@
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
 .my-dark-bg {
   background-color: #000000;
 }
 
-
-.MoveSliderdiv{
-    max-width: 1100px;
-    max-height: 550px;
-    margin: 30px auto;
-
+.MoveSliderdiv {
+  max-width: 1100px;
+  max-height: 550px;
+  margin: 30px auto;
 }
 
-.MovieOverview{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.MovieOverview {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   color: antiquewhite;
   font-size: larger;
 }
 
-.MovieTypeHeading{
-  font-family: 'DM Sans';
+.MovieTypeHeading {
+  font-family: "DM Sans";
   color: white;
 }
-.MovieHeading{
-  font-family: 'DM Sans';
+.MovieHeading {
+  font-family: "DM Sans";
   color: white;
   font-size: 1.4rem;
   max-width: 450px;
   padding-left: 3rem;
 }
 
-
 .MovieInfoimg {
   display: block;
   border-radius: 10px;
 }
 
-.Moviebheadinginfo{
-  font-family: 'DM Sans';
+.Moviebheadinginfo {
+  font-family: "DM Sans";
   color: white;
   padding-left: 3rem;
-  
 }
-.Moviebtitleinfo{
-    font-family: 'DM Sans';
+.Moviebtitleinfo {
+  font-family: "DM Sans";
   color: white;
   padding-left: 3rem;
   max-width: 500px;
-
 }
-.Movieinfo{
-  font-family: 'DM Sans';
+.Movieinfo {
+  font-family: "DM Sans";
   color: white;
   padding-left: 3rem;
   padding-bottom: 3rem;
   max-width: 450px;
-   
 }
-.MovieRating{
+.MovieRating {
   padding-left: 6rem;
   padding-bottom: 3rem;
 }
 
-.movieGenre{
-  font-family: 'DM Sans';
+.movieGenre {
+  font-family: "DM Sans";
   color: white;
 }
 
-
-.movieTopSlider{
-    max-width: 1030px;
-    max-height: 550px;
-    margin: 30px auto;
+.movieTopSlider {
+  max-width: 1030px;
+  max-height: 550px;
+  margin: 30px auto;
 }
 
-.movieComingHeading{
+.movieComingHeading {
   padding-top: 10rem;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   color: white;
-
 }
 
-.movieTopHeading{
+.movieTopHeading {
   padding-top: 2rem;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   color: white;
 }
 
-.LoadingData{
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.LoadingData {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: white;
   font-size: 5rem;
-
 }
-.LoadingDataDiv{
-
+.LoadingDataDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-
+  height: 100vh;
 }
-
