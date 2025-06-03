@@ -19,13 +19,14 @@
 
 .nav-button {
   padding: 0rem 4rem;
+  height: 50px;
   font-family: "DM Sans";
   color: white;
   background-color: #2e2d2c;
   border: none;
   cursor: pointer;
   font-size: medium;
-  font-weight: bolder;
+  font-weight: 10px;
 }
 
 .nav-button:hover {
@@ -34,6 +35,6 @@
 }
 
 .cover {
-  max-width: auto;
+  max-width: 150%;
   background-color: #2e2d2c;
 }

@@ -34,12 +34,20 @@ const getMovieVid = (id) => {
   const promise = axios.get(`http://10.0.0.26:3001/api/movies/${id}/vid`);
   return promise.then((v) => {
     const temp = [];
+    let trailer_count = 0;
+    let teaser_count = 0;
     v.data.results.map((vid) => {
       if (
         vid.site === "YouTube" &&
         (vid.type === "Teaser" || vid.type === "Trailer")
       ) {
-        temp.push(vid.key);
+        if (vid.type === "Teaser" && teaser_count < 3) {
+          temp.push(vid.key);
+          teaser_count += 1;
+        } else if (vid.type === "Trailer" && trailer_count < 3) {
+          trailer_count += 1;
+          temp.push(vid.key);
+        }
       }
     });
     v.data.results = temp;
