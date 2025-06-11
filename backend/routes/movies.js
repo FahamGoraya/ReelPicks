@@ -1,6 +1,7 @@
 const js = require("@eslint/js");
 const express = require("express");
 const router = express.Router();
+require("dotenv").config();
 
 router.get("/trend", (request, responese) => {
   const url = "https://api.themoviedb.org/3/trending/all/day?language=en-US";

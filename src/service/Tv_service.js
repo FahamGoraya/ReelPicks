@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Backend_URL = "http://192.168.111.26:3001/";
+const Backend_URL = "http://localhost:3001/";
 
 const getTvDetails = (id) => {
   return axios.get(`${Backend_URL}api/tv/${id}/info`).then((v) => v.data);
