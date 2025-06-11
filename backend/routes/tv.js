@@ -2,15 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 
-// Use API key from .env
-const TMDB_API_KEY = process.env.TMDB_API_KEY;
-
 // Reusable fetch options
 const getOptions = () => ({
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${TMDB_API_KEY}`,
+    Authorization: `Bearer ${process.env.TMBD_API_KEY}`,
   },
 });
 
