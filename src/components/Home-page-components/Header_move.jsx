@@ -41,7 +41,7 @@ const Header_move = () => {
             </button>
           </Link>
           <Link to={"/"}>
-            <button className="nav-button">
+            <button className="nav-buttonLogout">
               {"  "}
               <IoLogOut size={16} style={{ marginRight: "5px" }} />
               Log out

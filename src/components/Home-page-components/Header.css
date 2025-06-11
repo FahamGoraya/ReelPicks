@@ -29,6 +29,21 @@
   font-weight: 10px;
 }
 
+.nav-buttonLogout {
+  padding: 0rem 4rem;
+  height: 50px;
+  font-family: "DM Sans";
+  color: rgb(255, 0, 0);
+  background-color: #2e2d2c;
+  border: none;
+  cursor: pointer;
+  font-size: medium;
+  font-weight: 10px;
+}
+.nav-buttonLogout:hover {
+  background-color: #5ce1e6;
+  background-size: 150%;
+}
 .nav-button:hover {
   background-color: #5ce1e6;
   background-size: 150%;
