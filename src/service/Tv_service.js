@@ -1,18 +1,17 @@
 import axios from "axios";
 
+const Backend_URL = "http://192.168.111.26:3001/";
+
 const getTvDetails = (id) => {
-  const promise = axios.get(`http://10.0.0.26:3001/api/tv/${id}/info`);
-  return promise.then((v) => v.data);
+  return axios.get(`${Backend_URL}api/tv/${id}/info`).then((v) => v.data);
 };
 
 const getTvImg = (id) => {
-  const promise = axios.get(`http://10.0.0.26:3001/api/tv/${id}/img`);
-  return promise.then((v) => v.data);
+  return axios.get(`${Backend_URL}api/tv/${id}/img`).then((v) => v.data);
 };
 
 const getTvVid = (id) => {
-  const promise = axios.get(`http://10.0.0.26:3001/api/tv/${id}/vid`);
-  return promise.then((v) => {
+  return axios.get(`${Backend_URL}api/tv/${id}/vid`).then((v) => {
     const temp = [];
     v.data.results.map((vid) => {
       if (

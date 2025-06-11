@@ -48,6 +48,7 @@ function App() {
         setGenre(temp);
       } catch (err) {
         console.log("Error");
+        console.log(err);
       } finally {
         setLoading(false);
       }

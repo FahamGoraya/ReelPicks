@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 app.use(express.json());
-const origins = ["http://localhost:5173", "http://10.0.0.26:5173"];
+const origins = ["http://localhost:5173", "http://192.168.111.26:5173"];
 app.use(
   cors({
     origin: function (origin, callback) {
