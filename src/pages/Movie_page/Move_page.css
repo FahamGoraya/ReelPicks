@@ -36,3 +36,21 @@
   display: block;
   border-radius: 10px;
 }
+
+.Similar_slider_div{
+  max-width: 700px;
+  max-height: 550px;
+  margin: 20px auto;
+}
+
+.Description{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-weight: normal;
+  font-family: "DM Sans";
+  font-size: 1rem;
+  color: white;
+}
