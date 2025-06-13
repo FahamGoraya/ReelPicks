@@ -3,6 +3,7 @@ import axios from "axios";
 const Backend_URL = "https://gimoviesbackend.onrender.com/";
 
 const getTrend = () => {
+  console.log(`${Backend_URL}api/movies/trend`);
   return axios.get(`${Backend_URL}api/movies/trend`).then((v) => v.data);
 };
 
