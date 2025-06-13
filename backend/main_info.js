@@ -1,25 +1,6 @@
 const express = require("express");
-const cors = require("cors");
 const app = express();
 app.use(express.json());
-const origins = [
-  "http://localhost:5173",
-  "http://192.168.111.26:5173",
-  "https://gimovies.onrender.com/",
-];
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || origins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
 
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
