@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Backend_URL = "http://localhost:3001/";
+const Backend_URL = "https://gimoviesbackend.onrender.com/";
 
 const getTrend = () => {
   return axios.get(`${Backend_URL}api/movies/trend`).then((v) => v.data);
@@ -50,6 +50,12 @@ const getMovieVid = (id) => {
   });
 };
 
+const getMoiveSimiliarbyId = (id) => {
+  return axios
+    .get(`${Backend_URL}api/movies/${id}/similar`)
+    .then((v) => v.data);
+};
+
 const Fillter_movie_genre = (genre, genre_id) => {
   let ans = [];
   for (let g of genre_id) {
@@ -68,4 +74,5 @@ export default {
   Fillter_movie_genre,
   getMovieImg,
   getMovieVid,
+  getMoiveSimiliarbyId,
 };

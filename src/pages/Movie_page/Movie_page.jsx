@@ -6,15 +6,16 @@ import Header_move from "../../components/Home-page-components/Header_move";
 import Movies_service from "../../service/Movies_service";
 import Tv_service from "../../service/Tv_service";
 import Slider from "react-slick";
-const movie_description = () => {
-    return(
-      <div>
-        <p className = "Description">Genre:</p>
-        <p className = "Description">Release Date:</p>
-        <p className = "Description">Overview:</p>
-      </div>
-    )
-  }
+import Display_movies_without_info from "../../components/Home-page-components/Display_movies_without_info";
+const Movie_description = () => {
+  return (
+    <div>
+      <p className="Description">Genre:</p>
+      <p className="Description">Release Date:</p>
+      <p className="Description">Overview:</p>
+    </div>
+  );
+};
 const Movie_page = () => {
   const [Details, setDetails] = useState(null);
   const [Videos, setVideos] = useState(null);
@@ -24,9 +25,19 @@ const Movie_page = () => {
   const baseImg = "https://image.tmdb.org/t/p/original";
   const baseVid = "https://www.youtube.com/embed/";
 
-  const setting = {
+  let settingMovie = {
     infinite: true,
     slidesToShow: 2,
+    slidesToScroll: 2,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true,
+    focusOnSelect: true,
+  };
+
+  const settingSimiliar = {
+    infinite: true,
+    slidesToShow: 4,
     slidesToScroll: 2,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -42,23 +53,28 @@ const Movie_page = () => {
           setDetails(temp);
           temp = await Movies_service.getMovieVid(id);
           setVideos(temp);
+          temp = await Movies_service.getMoiveSimiliarbyId(id);
+          setSimilar(temp);
         } else if (type === "tv") {
           temp = await Tv_service.getTvDetails(id);
           setDetails(temp);
           temp = await Tv_service.getTvVid(id);
           setVideos(temp);
+          temp = await Tv_service.getTvSimiliarbyId(id);
+          setSimilar(temp);
         }
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
     }; //end of function
     setLoading(true);
     load_movie();
   };
 
-  useEffect(getMove_pg, []);
+  useEffect(getMove_pg, [id, type]);
 
   useEffect(() => {
     document.body.classList.add("my-dark-bg");
@@ -94,55 +110,51 @@ const Movie_page = () => {
       <Header_move />
       <h1 className="Movieheadingid">{y}</h1>
       <div className="Slider_div">
-        <Slider {...setting}>
-          <img
-            src={baseImg + Details.poster_path}
-            width={450}
-            height={500}
-            className="Movieimg"
-          ></img>
-
-          {Videos.map((vid_id) => (
-            <iframe
-              width="450"
-              height="500"
-              src={baseVid + vid_id}
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+        {Videos.length != 0 && (
+          <Slider {...settingMovie}>
+            <img
+              src={baseImg + Details.poster_path}
+              width={450}
+              height={500}
               className="Movieimg"
-            ></iframe>
-          ))}
-        </Slider>
+            ></img>
+
+            {Videos.map((vid_id) => (
+              <iframe
+                width="450"
+                height="500"
+                src={baseVid + vid_id}
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="Movieimg"
+              ></iframe>
+            ))}
+          </Slider>
+        )}
+        {Videos.length === 0 && (
+          <div className="MovieCenter">
+            <img
+              src={baseImg + Details.poster_path}
+              width={450}
+              height={500}
+              className="Movieimg"
+            ></img>
+          </div>
+        )}
       </div>
 
-      <movie_description/>
-
+      <Movie_description />
       <h1 className="Movieheadingid">Similar To</h1>
       <div className="Similar_slider_div">
-        <Slider {...setting}>
-          <img
-            src={baseImg + Details.poster_path}
-            width={250}
-            height={300}
-            className="Movieimg"
-          ></img>
-
-          {Videos.map((vid_id) => (
-            <iframe
-              width="250"
-              height="300"
-              src={baseVid + vid_id}
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              className="Movieimg"
-            ></iframe>
+        <Slider {...settingSimiliar}>
+          {Similar.results.map((result) => (
+            <Display_movies_without_info key={result.id} n={result} />
           ))}
         </Slider>
       </div>
     </>
-    
   );
 };
 
