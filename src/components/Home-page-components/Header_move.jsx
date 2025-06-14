@@ -4,8 +4,31 @@ import { IoMdSearch } from "react-icons/io";
 import { MdRecommend } from "react-icons/md";
 import { IoLogOut } from "react-icons/io5";
 import { IoIosInformationCircle } from "react-icons/io";
+import { useNavigate } from "react-router";
 
 const Header_move = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async (event) => {
+    try {
+      const response = await fetch("http://localhost:3001/api/user/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        navigate("/");
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <div className="cover">
       <header className="header-hbox">
@@ -40,13 +63,11 @@ const Header_move = () => {
               About
             </button>
           </Link>
-          <Link to={"/"}>
-            <button className="nav-buttonLogout">
-              {"  "}
-              <IoLogOut size={16} style={{ marginRight: "5px" }} />
-              Log out
-            </button>
-          </Link>
+          <button className="nav-buttonLogout" onClick={handleLogout}>
+            {"  "}
+            <IoLogOut size={16} style={{ marginRight: "5px" }} />
+            Log out
+          </button>
         </nav>
       </header>
     </div>

@@ -1,11 +1,10 @@
 import { useState } from "react";
 import "../../pages/Login.css";
 
-function Password() {
-  const [pass, setPass] = useState("");
-
+function Password(props) {
   const handle_Pass = (event) => {
-    setPass(event.target.value);
+    props.SetPassword(event.target.value);
+    props.setError(""); // Reset error message
   };
 
   return (
@@ -14,8 +13,9 @@ function Password() {
       <input
         type="password"
         className="SignupText"
-        value={pass}
+        value={props.pass}
         onChange={handle_Pass}
+        required
       />
     </>
   );

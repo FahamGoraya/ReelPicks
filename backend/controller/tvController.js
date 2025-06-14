@@ -42,7 +42,7 @@ const getTvSimiliarbyId = async (req, res) => {
   const id = req.params.id;
   const url = `https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`;
 
-  fetch(url, options)
+  fetch(url, getOptions())
     .then((res) => res.json())
     .then((data) => res.json(data))
     .catch((err) => console.error(err));

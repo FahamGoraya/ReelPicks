@@ -10,6 +10,7 @@ import Slider from "react-slick";
 import Header_move from "../components/Home-page-components/Header_move";
 
 function App() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [trending, setTrending] = useState(null);
   const [top, setTop] = useState(null);
@@ -48,6 +49,7 @@ function App() {
         setGenre(temp);
       } catch (err) {
         console.log("Error");
+        navigate("/");
         console.log(err);
       } finally {
         setLoading(false);

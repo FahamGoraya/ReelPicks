@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Move_page.css";
 import "../../components/Home-page-components/Header_move";
 import Header_move from "../../components/Home-page-components/Header_move";
@@ -17,6 +18,7 @@ const Movie_description = () => {
   );
 };
 const Movie_page = () => {
+  const navigate = useNavigate();
   const [Details, setDetails] = useState(null);
   const [Videos, setVideos] = useState(null);
   const [Loading, setLoading] = useState(true);
@@ -64,6 +66,7 @@ const Movie_page = () => {
           setSimilar(temp);
         }
       } catch (err) {
+        navigate("/");
         console.log(err);
       } finally {
         setLoading(false);

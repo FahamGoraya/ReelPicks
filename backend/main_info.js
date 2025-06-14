@@ -1,10 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
+const userRoutes = require("./routes/user");
 
 const genres = [
   {
@@ -123,6 +131,7 @@ app.use("/api/tv", tvRoutes);
 app.get("/api/genre", (request, response) => {
   response.json(genres);
 });
+app.use("/api/user", userRoutes);
 
 const PORT = 3001;
 app.listen(PORT, () => {
