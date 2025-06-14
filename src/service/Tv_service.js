@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const Backend_URL = "http://localhost:3001/";
+const Backend_URL = "https://gimoviesbackend.onrender.com/";
 
 const getTvDetails = (id) => {
   return axios
     .get(`${Backend_URL}api/tv/${id}/info`, {
-      withCredentials: true, // ✅ ensures cookie (JWT) is sent
+      withCredentials: true,
     })
     .then((v) => v.data);
 };
