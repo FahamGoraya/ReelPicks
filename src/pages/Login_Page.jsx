@@ -28,14 +28,17 @@ function Login_page() {
       return;
     }
     try {
-      let response = await fetch("http://localhost:3001/api/user/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: name, password: password }), // Ensure the body matches your backend expectations
-      });
+      let response = await fetch(
+        "https://gimoviesbackend.onrender.com/api/user/login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user: name, password: password }), // Ensure the body matches your backend expectations
+        }
+      );
       response = await response.json();
       if (response.success) {
         navigae("/home");
