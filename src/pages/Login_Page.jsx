@@ -51,7 +51,12 @@ function Login_page() {
     <>
       <div className="wrapper">
         <h1 className="signtext">GI Movies</h1>
-        <form className="signUpbox" onSubmit={handle_importance}>
+        <form
+          className={
+            error === "" ? "signUpboxWithoutError" : "signUpboxWithError"
+          }
+          onSubmit={handle_importance}
+        >
           {error && <p className="error-message">{error}</p>}
           <Username SetName={SetName} name={name} setError={setError} />
           <Password
