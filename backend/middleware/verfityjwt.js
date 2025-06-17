@@ -3,7 +3,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 const verifyJwt = async (req, res, next) => {
-  console.log(req.cookies);
+  console.log(req.headers.cookies);
   const token = req.cookies.my_token;
   if (!token) {
     return res.status(401).json({ message: "No token provided" });
