@@ -15,7 +15,7 @@ const userLogin = async (req, res) => {
       res.cookie("my_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-        sameSite: "Strict", // Prevent CSRF attacks
+        sameSite: "None", // Prevent CSRF attacks
       });
       console.log("Tokens is", token);
       return res.json({
@@ -47,7 +47,7 @@ const userLogout = async (req, res) => {
   res.clearCookie("my_token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "Strict",
+    sameSite: "None",
   });
   res.json({ message: "Logout successful", success: true });
 };
