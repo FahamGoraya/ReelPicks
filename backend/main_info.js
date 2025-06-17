@@ -10,6 +10,7 @@ app.use(
     credentials: true,
   })
 );
+app.set("trust proxy", 1);
 const mongoose = require("mongoose");
 app.use(cookieParser());
 const movieRoutes = require("./routes/movies");
