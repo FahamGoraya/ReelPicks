@@ -14,7 +14,6 @@ const userLogin = async (req, res) => {
       res.cookie("my_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production
-        sameSite: "Strict", // Prevent CSRF attacks
       });
       return res.json({
         message: "Login successful",
