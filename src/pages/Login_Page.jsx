@@ -26,7 +26,7 @@ function Login_page() {
     setError("");
     setIsLoading(true);
 
-    if (name === "" || password === "") {
+    if (email === "" || password === "") {
       setError("Please fill in all fields");
       setIsLoading(false);
       return;
@@ -41,7 +41,7 @@ function Login_page() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user: name, password: password }),
+          body: JSON.stringify({ user: email, password: password }),
         }
       );
       response = await response.json();
@@ -89,7 +89,7 @@ function Login_page() {
             )}
 
             <div className="input-container">
-              <Email SetEmail={SetEmail} name={email} setError={setError} />
+              <Email SetEmail={SetEmail} email={email} setError={setError} />
               <Password
                 SetPassword={SetPassword}
                 pass={password}

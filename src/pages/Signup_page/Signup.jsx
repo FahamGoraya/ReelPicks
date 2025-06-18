@@ -28,7 +28,7 @@ function Signup_page() {
     setError("");
     setIsLoading(true);
 
-    if (name === "" || password === "") {
+    if (email === "" || password === "" || username === "") {
       setError("Please fill in all fields");
       setIsLoading(false);
       return;
@@ -52,7 +52,7 @@ function Signup_page() {
       );
       response = await response.json();
       if (response.success) {
-        navigae("/login");
+        navigae("/");
       } else {
         setError(response.message || "Signup failed. Please try again.");
       }
