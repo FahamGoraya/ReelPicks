@@ -36,7 +36,7 @@ function Signup_page() {
 
     try {
       let response = await fetch(
-        "https://gimoviesbackend.onrender.com/api/user/login",
+        "https://gimoviesbackend.onrender.com/api/user/signup",
         {
           method: "POST",
           credentials: "include",

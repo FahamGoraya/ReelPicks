@@ -10,6 +10,6 @@ const { verifyJwt } = require("../middleware/verfityjwt");
 router.post("/login", userLogin);
 router.post("/getinfo", verifyJwt, getInfo);
 router.post("/logout", verifyJwt, userLogout);
-router.post("/signup", userLogin);
+router.post("/signup", verifyJwt, userSignup);
 
 module.exports = router;
