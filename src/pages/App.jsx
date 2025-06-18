@@ -81,6 +81,7 @@ function App() {
   return (
     <>
       <Header_move />
+
       <div className="MoveSliderdiv">
         <h1 className="MovieTypeHeading">Trending</h1>
         <Slider {...settingstrend}>

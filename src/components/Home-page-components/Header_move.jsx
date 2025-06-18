@@ -1,3 +1,4 @@
+import React from "react";
 import "./Header.css";
 import { Link } from "react-router";
 import { IoMdSearch } from "react-icons/io";
@@ -33,44 +34,44 @@ const Header_move = () => {
   };
 
   return (
-    <div className="cover">
-      <header className="header-hbox">
-        <Link to={"/home"}>
+    <div className="header-wrapper">
+      <div className="header-gradient-line"></div>
+      <header className="header-container">
+        <Link to={"/home"} className="logo-link">
           <div className="logo">
-            <h3 className="Footer_logo">GI Movies</h3>
+            <div className="logo-icon">🎬</div>
+            <h1 className="logo-text">
+              <span className="logo-gi">Next</span>
+              <span className="logo-movies">Movie</span>
+            </h1>
           </div>
         </Link>
 
-        <nav className="nav-links">
-          <Link to={"/"}>
-            <button className="nav-button">
-              {" "}
-              <IoMdSearch size={15} style={{ marginRight: "5px" }} />
-              Search
+        <nav className="nav-container">
+          <div className="nav-links">
+            <Link to={"/"} className="nav-link">
+              <button className="nav-button">
+                <IoMdSearch className="nav-icon" />
+                <span>Search</span>
+              </button>
+            </Link>
+            <Link to={"/"} className="nav-link">
+              <button className="nav-button">
+                <MdRecommend className="nav-icon" />
+                <span>Recommend</span>
+              </button>
+            </Link>
+            <Link to={"/"} className="nav-link">
+              <button className="nav-button">
+                <IoIosInformationCircle className="nav-icon" />
+                <span>About</span>
+              </button>
+            </Link>
+            <button className="nav-button logout-button" onClick={handleLogout}>
+              <IoLogOut className="nav-icon" />
+              <span>Logout</span>
             </button>
-          </Link>
-          <Link to={"/"}>
-            <button className="nav-button">
-              {" "}
-              <MdRecommend size={16} style={{ marginRight: "5px" }} />
-              Recommend me
-            </button>
-          </Link>
-          <Link to={"/"}>
-            <button className="nav-button">
-              {"  "}
-              <IoIosInformationCircle
-                size={16}
-                style={{ marginRight: "5px" }}
-              />
-              About
-            </button>
-          </Link>
-          <button className="nav-buttonLogout" onClick={handleLogout}>
-            {"  "}
-            <IoLogOut size={16} style={{ marginRight: "5px" }} />
-            Log out
-          </button>
+          </div>
         </nav>
       </header>
     </div>

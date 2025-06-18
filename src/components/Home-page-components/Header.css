@@ -1,55 +1,241 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap");
 
-.Footer_logo {
-  font-family: "Anton";
-  color: #5ce1e6;
-  font-weight: bolder;
-  font-size: x-large;
-  padding-left: 2rem;
-  text-decoration: none;
+/* Header Wrapper */
+.header-wrapper {
+  position: relative;
+  background: linear-gradient(135deg, #1a1918 0%, #2e2d2c 50%, #1a1918 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 }
 
-.header-hbox {
+.header-gradient-line {
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #5ce1e6 20%,
+    #ff6b6b 50%,
+    #ffd93d 80%,
+    transparent 100%
+  );
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Header Container */
+.header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #2e2d2c;
+  padding: 1rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
 }
 
+/* Logo Styles */
+.logo-link {
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0 0 10px rgba(92, 225, 230, 0.5));
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.logo-text {
+  font-family: "Orbitron", "Anton", sans-serif;
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.logo-gi {
+  color: #5ce1e6;
+  text-shadow: 0 0 20px rgba(92, 225, 230, 0.8);
+}
+
+.logo-movies {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Navigation Container */
+.nav-container {
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+}
+
+/* Navigation Buttons */
 .nav-button {
-  padding: 0rem 4rem;
-  height: 50px;
-  font-family: "DM Sans";
-  color: white;
-  background-color: #2e2d2c;
-  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(145deg, #3a3938, #2a2928);
+  border: 1px solid rgba(92, 225, 230, 0.2);
+  border-radius: 12px;
   cursor: pointer;
-  font-size: medium;
-  font-weight: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.nav-buttonLogout {
-  padding: 0rem 4rem;
-  height: 50px;
-  font-family: "DM Sans";
-  color: rgb(255, 0, 0);
-  background-color: #2e2d2c;
-  border: none;
-  cursor: pointer;
-  font-size: medium;
-  font-weight: 10px;
+.nav-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(92, 225, 230, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
 }
-.nav-buttonLogout:hover {
-  background-color: #5ce1e6;
-  background-size: 150%;
+
+.nav-button:hover::before {
+  left: 100%;
 }
+
 .nav-button:hover {
-  background-color: #5ce1e6;
-  background-size: 150%;
+  background: linear-gradient(145deg, #4a4948, #3a3938);
+  border-color: #5ce1e6;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(92, 225, 230, 0.3);
+  transform: translateY(-2px);
+  color: #5ce1e6;
 }
 
-.cover {
-  max-width: 150%;
-  background-color: #2e2d2c;
+.nav-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Styles */
+.nav-icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-button:hover .nav-icon {
+  transform: scale(1.2);
+}
+
+/* Logout Button Special Styling */
+.logout-button {
+  background: linear-gradient(145deg, #4a2d2d, #3a2222);
+  border-color: rgba(255, 107, 107, 0.3);
+  margin-left: 1rem;
+}
+
+.logout-button:hover {
+  background: linear-gradient(145deg, #5a3333, #4a2828);
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.logout-button::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 107, 107, 0.2),
+    transparent
+  );
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .logout-button {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-button span {
+    display: none;
+  }
+
+  .nav-button {
+    padding: 0.75rem;
+    min-width: 3rem;
+  }
+
+  .nav-icon {
+    font-size: 1.2rem;
+  }
 }

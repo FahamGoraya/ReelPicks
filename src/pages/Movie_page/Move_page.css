@@ -8,6 +8,7 @@
   color: white;
   font-size: 5rem;
 }
+
 .LoadingDataDiv {
   display: flex;
   justify-content: center;
@@ -20,6 +21,7 @@
   max-height: 550px;
   margin: 20px auto;
 }
+
 .Movieheadingid {
   margin-top: 100px;
   margin-bottom: 60px;
@@ -36,6 +38,7 @@
   display: block;
   border-radius: 10px;
 }
+
 .MovieCenter {
   display: flex;
   justify-content: center;
@@ -48,14 +51,103 @@
   margin: 20px auto;
 }
 
-.Description {
-  margin-top: 50px;
-  margin-bottom: 50px;
+/* Updated description styles */
+.description-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.description-item {
+  margin-bottom: 20px;
   display: flex;
-  justify-content: left;
-  align-items: center;
-  font-weight: normal;
-  font-family: "DM Sans";
-  font-size: 1rem;
+  align-items: flex-start;
   color: white;
+  font-family: "DM Sans", sans-serif;
+}
+
+.description-item.rating-item {
+  align-items: center;
+}
+
+.description-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  min-width: 140px;
+  color: #e2e8f0;
+}
+
+.description-value {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.movie-rating {
+  margin-right: 8px;
+}
+
+.rating-text {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #fbbf24;
+  white-space: nowrap;
+}
+
+.description-item.overview {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.description-overview {
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .description-container {
+    padding: 0 15px;
+  }
+
+  .description-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .description-item.rating-item {
+    align-items: flex-start;
+  }
+
+  .rating-container {
+    margin-top: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .description-label {
+    min-width: auto;
+    margin-bottom: 5px;
+  }
+
+  .Movieheadingid {
+    font-size: 2rem;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+    text-align: center;
+  }
 }

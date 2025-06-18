@@ -8,15 +8,106 @@ import Movies_service from "../../service/Movies_service";
 import Tv_service from "../../service/Tv_service";
 import Slider from "react-slick";
 import Display_movies_without_info from "../../components/Home-page-components/Display_movies_without_info";
-const Movie_description = () => {
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+
+const Movie_description = ({ details, type }) => {
+  // Helper function to format genres
+  const formatGenres = (genres) => {
+    if (!genres || genres.length === 0) return "Not available";
+    return genres.map((genre) => genre.name).join(", ");
+  };
+
+  // Helper function to format release date
+  const formatReleaseDate = (details, type) => {
+    let date;
+    if (type === "movie") {
+      date = details.release_date;
+    } else if (type === "tv") {
+      date = details.first_air_date;
+    }
+
+    if (!date) return "Not available";
+
+    // Format the date to be more readable
+    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    return formattedDate;
+  };
+
+  // Helper function to get runtime/episode info
+  const getRuntimeInfo = (details, type) => {
+    if (type === "movie") {
+      return details.runtime ? `${details.runtime} minutes` : "Not available";
+    } else if (type === "tv") {
+      const seasons = details.number_of_seasons;
+      const episodes = details.number_of_episodes;
+      return `${seasons} Season${
+        seasons !== 1 ? "s" : ""
+      }, ${episodes} Episode${episodes !== 1 ? "s" : ""}`;
+    }
+    return "Not available";
+  };
+
   return (
-    <div>
-      <p className="Description">Genre:</p>
-      <p className="Description">Release Date:</p>
-      <p className="Description">Overview:</p>
+    <div className="description-container">
+      <div className="description-item">
+        <span className="description-label">Genre: </span>
+        <span className="description-value">
+          {formatGenres(details.genres)}
+        </span>
+      </div>
+
+      <div className="description-item">
+        <span className="description-label">
+          {type === "movie" ? "Release Date: " : "First Air Date: "}
+        </span>
+        <span className="description-value">
+          {formatReleaseDate(details, type)}
+        </span>
+      </div>
+
+      <div className="description-item">
+        <span className="description-label">
+          {type === "movie" ? "Runtime: " : "Episodes: "}
+        </span>
+        <span className="description-value">
+          {getRuntimeInfo(details, type)}
+        </span>
+      </div>
+
+      {details.vote_average && (
+        <div className="description-item rating-item">
+          <span className="description-label">Rating: </span>
+          <div className="rating-container">
+            <Rating
+              className="movie-rating"
+              style={{ maxWidth: 150 }}
+              value={(details.vote_average / 10) * 5}
+              readOnly
+            />
+            <span className="rating-text">
+              {details.vote_average.toFixed(1)}/10 (
+              {details.vote_count?.toLocaleString()} votes)
+            </span>
+          </div>
+        </div>
+      )}
+
+      <div className="description-item overview">
+        <span className="description-label">Overview: </span>
+        <p className="description-overview">
+          {details.overview || "No overview available."}
+        </p>
+      </div>
     </div>
   );
 };
+
 const Movie_page = () => {
   const navigate = useNavigate();
   const [Details, setDetails] = useState(null);
@@ -46,6 +137,7 @@ const Movie_page = () => {
     arrows: true,
     focusOnSelect: true,
   };
+
   const getMove_pg = () => {
     const load_movie = async () => {
       try {
@@ -72,7 +164,7 @@ const Movie_page = () => {
         setLoading(false);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    }; //end of function
+    };
     setLoading(true);
     load_movie();
   };
@@ -120,19 +212,21 @@ const Movie_page = () => {
               width={450}
               height={500}
               className="Movieimg"
-            ></img>
+              alt={y}
+            />
 
-            {Videos.map((vid_id) => (
+            {Videos.map((vid_id, index) => (
               <iframe
+                key={index}
                 width="450"
                 height="500"
                 src={baseVid + vid_id}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="Movieimg"
-              ></iframe>
+              />
             ))}
           </Slider>
         )}
@@ -143,12 +237,14 @@ const Movie_page = () => {
               width={450}
               height={500}
               className="Movieimg"
-            ></img>
+              alt={y}
+            />
           </div>
         )}
       </div>
 
-      <Movie_description />
+      <Movie_description details={Details} type={type} />
+
       <h1 className="Movieheadingid">Similar To</h1>
       <div className="Similar_slider_div">
         <Slider {...settingSimiliar}>
