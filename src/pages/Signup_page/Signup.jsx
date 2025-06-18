@@ -2,14 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router";
 import "./Signup.css";
-import Username from "../../components/Login and sign up components/Username";
+import Email from "../../components/Login and sign up components/Email";
 import Password from "../../components/Login and sign up components/Password";
+import Username from "../../components/Login and sign up components/Username";
 
 function Signup_page() {
   const navigae = useNavigate();
   const loc = useLocation();
-  const [name, SetName] = useState("");
+  const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
+  const [username, SetUsername] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,14 +43,18 @@ function Signup_page() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user: name, password: password }),
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            username: username,
+          }),
         }
       );
       response = await response.json();
       if (response.success) {
         navigae("/login");
       } else {
-        setError(response.message || "Login failed. Please try again.");
+        setError(response.message || "Signup failed. Please try again.");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
@@ -65,8 +71,8 @@ function Signup_page() {
           <div className="logo-section">
             <div className="logo-icon-large">🎬</div>
             <h1 className="login-title">
-              <span className="title-gi">Next</span>
-              <span className="title-movies">Movie</span>
+              <span className="title-gi">Reel</span>
+              <span className="title-movies">Picks</span>
             </h1>
             <p className="login-subtitle">
               Skip the scroll, find your perfect movie
@@ -75,7 +81,7 @@ function Signup_page() {
 
           <form className="login-form" onSubmit={handle_importance}>
             <div className="form-header">
-              <h2 className="form-title">Welcome Back</h2>
+              <h2 className="form-title">Welcome to RP</h2>
               <p className="form-subtitle">
                 Create your account to start your movie journey
               </p>
@@ -89,7 +95,12 @@ function Signup_page() {
             )}
 
             <div className="input-container">
-              <Username SetName={SetName} name={name} setError={setError} />
+              <Username
+                SetUsername={SetUsername}
+                username={username}
+                setError={setError}
+              />
+              <Email SetEmail={SetEmail} email={email} setError={setError} />
               <Password
                 SetPassword={SetPassword}
                 pass={password}
@@ -118,7 +129,7 @@ function Signup_page() {
             <div className="form-footer">
               <p className="signup-text">
                 Already have an account?{" "}
-                <Link to="/Login" className="signup-link">
+                <Link to="/" className="signup-link">
                   Log in
                 </Link>
               </p>

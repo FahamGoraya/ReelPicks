@@ -39,10 +39,9 @@ const Header_move = () => {
       <header className="header-container">
         <Link to={"/home"} className="logo-link">
           <div className="logo">
-            <div className="logo-icon">🎬</div>
             <h1 className="logo-text">
-              <span className="logo-gi">Next</span>
-              <span className="logo-movies">Movie</span>
+              <span className="logo-gi">Reel</span>
+              <span className="logo-movies">Picks</span>
             </h1>
           </div>
         </Link>

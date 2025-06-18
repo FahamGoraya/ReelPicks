@@ -52,4 +52,23 @@ const userLogout = async (req, res) => {
   res.json({ message: "Logout successful", success: true });
 };
 
-module.exports = { userLogin, getInfo, userLogout };
+const userSignup = async (req, res) => {
+  const { username, email, password } = req.body;
+
+  const user = await User.create({
+    name: username,
+    email: email,
+    password: password,
+    moviesClicked: [],
+  });
+  if (!user) {
+    return res
+      .status(400)
+      .json({ success: false, message: "User creation failed" });
+  }
+  res
+    .status(201)
+    .json({ success: true, message: "User created successfully", user });
+};
+
+module.exports = { userLogin, getInfo, userLogout, userSignup };

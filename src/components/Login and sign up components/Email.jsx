@@ -1,22 +1,23 @@
 import { useState } from "react";
 import "../../pages/Login.css";
-function Username(props) {
+function Email(props) {
   const handle_User = (event) => {
-    props.SetUsername(event.target.value);
+    props.SetEmail(event.target.value);
     props.setError(""); // Reset error message
   };
 
   return (
     <>
-      <h4 className="SignupHeading">Username : </h4>
+      <h4 className="SignupHeading">Email : </h4>
       <input
         className="SignupText"
-        value={props.username}
+        value={props.email}
         onChange={handle_User}
+        type="email"
         required
       />
     </>
   );
 }
 
-export default Username;
+export default Email;

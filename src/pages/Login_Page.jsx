@@ -2,13 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router";
 import "./Login.css";
-import Username from "../components/Login and sign up components/Username";
+import Email from "../components/Login and sign up components/Email";
 import Password from "../components/Login and sign up components/Password";
 
 function Login_page() {
   const navigae = useNavigate();
   const loc = useLocation();
-  const [name, SetName] = useState("");
+  const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -65,8 +65,8 @@ function Login_page() {
           <div className="logo-section">
             <div className="logo-icon-large">🎬</div>
             <h1 className="login-title">
-              <span className="title-gi">Next</span>
-              <span className="title-movies">Movie</span>
+              <span className="title-gi">Reel</span>
+              <span className="title-movies">Picks</span>
             </h1>
             <p className="login-subtitle">
               Skip the scroll, find your perfect movie
@@ -89,7 +89,7 @@ function Login_page() {
             )}
 
             <div className="input-container">
-              <Username SetName={SetName} name={name} setError={setError} />
+              <Email SetEmail={SetEmail} name={email} setError={setError} />
               <Password
                 SetPassword={SetPassword}
                 pass={password}
