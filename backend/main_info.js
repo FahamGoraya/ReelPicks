@@ -147,21 +147,6 @@ app.get("/api/genre", (request, response) => {
 });
 app.use("/api/user", userRoutes);
 
-app.post("/api/lol", async (req, res) => {
-  const { username, email, password } = req.body;
-
-  const user = await User.create({
-    name: username,
-    email: email,
-    password: password,
-    moviesClicked: [],
-  });
-  if (!user) {
-    return res.status(400).json({ message: "User creation failed" });
-  }
-  res.status(201).json({ message: "User created successfully", user });
-});
-
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

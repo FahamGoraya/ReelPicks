@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { createContext } from "react";
 import Login_page from "./pages/Login_Page.jsx";
 import Movie_page from "./pages/Movie_page/Movie_page.jsx";
+import Signup_page from "./pages/Signup_page/Signup.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     path: "/home/:id/:type",
     element: <Movie_page />,
   },
+  { path: "/signup", element: <Signup_page /> },
 ]);
 
 const R = () => {

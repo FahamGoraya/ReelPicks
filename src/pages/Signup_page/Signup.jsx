@@ -1,15 +1,17 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { Link } from "react-router";
-import "./Login.css";
-import Email from "../components/Login and sign up components/Email";
-import Password from "../components/Login and sign up components/Password";
+import "./Signup.css";
+import Email from "../../components/Login and sign up components/Email";
+import Password from "../../components/Login and sign up components/Password";
+import Username from "../../components/Login and sign up components/Username";
 
-function Login_page() {
+function Signup_page() {
   const navigae = useNavigate();
   const loc = useLocation();
   const [email, SetEmail] = useState("");
   const [password, SetPassword] = useState("");
+  const [username, SetUsername] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,14 +43,18 @@ function Login_page() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user: name, password: password }),
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            username: username,
+          }),
         }
       );
       response = await response.json();
       if (response.success) {
-        navigae("/home");
+        navigae("/login");
       } else {
-        setError(response.message || "Login failed. Please try again.");
+        setError(response.message || "Signup failed. Please try again.");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");
@@ -75,9 +81,9 @@ function Login_page() {
 
           <form className="login-form" onSubmit={handle_importance}>
             <div className="form-header">
-              <h2 className="form-title">Welcome Back</h2>
+              <h2 className="form-title">Welcome to RP</h2>
               <p className="form-subtitle">
-                Sign in to start your movie journey
+                Create your account to start your movie journey
               </p>
             </div>
 
@@ -89,7 +95,12 @@ function Login_page() {
             )}
 
             <div className="input-container">
-              <Email SetEmail={SetEmail} name={email} setError={setError} />
+              <Username
+                SetUsername={SetUsername}
+                username={username}
+                setError={setError}
+              />
+              <Email SetEmail={SetEmail} email={email} setError={setError} />
               <Password
                 SetPassword={SetPassword}
                 pass={password}
@@ -105,11 +116,11 @@ function Login_page() {
               {isLoading ? (
                 <>
                   <div className="loading-spinner"></div>
-                  <span>Signing In...</span>
+                  <span>Creating account...</span>
                 </>
               ) : (
                 <>
-                  <span>Sign In</span>
+                  <span>Create your account</span>
                   <div className="button-arrow">→</div>
                 </>
               )}
@@ -117,9 +128,9 @@ function Login_page() {
 
             <div className="form-footer">
               <p className="signup-text">
-                New to Next Movie?{" "}
-                <Link to="/signup" className="signup-link">
-                  Create Account
+                Already have an account?{" "}
+                <Link to="/" className="signup-link">
+                  Log in
                 </Link>
               </p>
             </div>
@@ -130,4 +141,4 @@ function Login_page() {
   );
 }
 
-export default Login_page;
+export default Signup_page;
