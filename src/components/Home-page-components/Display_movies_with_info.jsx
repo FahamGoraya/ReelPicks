@@ -79,7 +79,9 @@ const Display_movies_with_info = (props) => {
                   readOnly
                 />
                 <span className="rating-text">
-                  {props.n.vote_average?.toFixed(1)}/10
+                  {props.n.vote_average
+                    ? `${(props.n.vote_average / 2).toFixed(1)}/5`
+                    : "N/A"}
                 </span>
               </div>
 
@@ -126,20 +128,14 @@ const Display_movies_with_info = (props) => {
                     {mediaType.toUpperCase()}
                   </span>
                 </div>
-                {props.n.vote_count && (
-                  <div className="info-item">
-                    <span className="info-label">Votes:</span>
-                    <span className="info-value">
-                      {props.n.vote_count.toLocaleString()}
-                    </span>
-                  </div>
-                )}
-                {!props.n.vote_count && (
-                  <div className="info-item">
-                    <span className="info-label">Votes:</span>
-                    <span className="info-value">{0}</span>
-                  </div>
-                )}
+                <div className="info-item">
+                  <span className="info-label">Votes:</span>
+                  <span className="info-value">
+                    {props.n.vote_count
+                      ? props.n.vote_count.toLocaleString()
+                      : "N/A"}
+                  </span>
+                </div>
               </div>
             </Box>
           </Grid>

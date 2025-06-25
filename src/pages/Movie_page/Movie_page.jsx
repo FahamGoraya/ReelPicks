@@ -80,23 +80,23 @@ const Movie_description = ({ details, type }) => {
         </span>
       </div>
 
-      {details.vote_average && (
-        <div className="description-item rating-item">
-          <span className="description-label">Rating: </span>
-          <div className="rating-container">
-            <Rating
-              className="movie-rating"
-              style={{ maxWidth: 150 }}
-              value={(details.vote_average / 10) * 5}
-              readOnly
-            />
-            <span className="rating-text">
-              {details.vote_average.toFixed(1)}/10 (
-              {details.vote_count?.toLocaleString()} votes)
-            </span>
-          </div>
+      <div className="description-item rating-item">
+        <span className="description-label">Rating: </span>
+        <div className="rating-container">
+          <Rating
+            className="movie-rating"
+            style={{ maxWidth: 150 }}
+            value={(details.vote_average / 10) * 5}
+            readOnly
+          />
+          <span className="rating-text">
+            {details.vote_average
+              ? `${(details.vote_average / 2).toFixed(1)}/5`
+              : ""}{" "}
+            ({details.vote_count ? details.vote_count.toLocaleString() : "N/A"})
+          </span>
         </div>
-      )}
+      </div>
 
       <div className="description-item overview">
         <span className="description-label">Overview: </span>

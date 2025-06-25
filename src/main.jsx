@@ -6,6 +6,7 @@ import { createContext } from "react";
 import Login_page from "./pages/Login_Page.jsx";
 import Movie_page from "./pages/Movie_page/Movie_page.jsx";
 import Signup_page from "./pages/Signup_page/Signup.jsx";
+import SearchPage from "./pages/Search_page/Search.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     element: <Movie_page />,
   },
   { path: "/signup", element: <Signup_page /> },
+  {
+    path: "/search",
+    element: <SearchPage />,
+  },
 ]);
 
 const R = () => {

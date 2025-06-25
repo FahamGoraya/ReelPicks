@@ -35,21 +35,18 @@ function Signup_page() {
     }
 
     try {
-      let response = await fetch(
-        "https://gimoviesbackend.onrender.com/api/user/signup",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            username: username,
-          }),
-        }
-      );
+      let response = await fetch("http://localhost:3001/api/user/signup", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          username: username,
+        }),
+      });
       response = await response.json();
       if (response.success) {
         navigae("/");

@@ -12,16 +12,13 @@ const Header_move = () => {
 
   const handleLogout = async (event) => {
     try {
-      const response = await fetch(
-        "https://gimoviesbackend.onrender.com/api/user/logout",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch("http://localhost:3001/api/user/logout", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         navigate("/");
@@ -48,7 +45,7 @@ const Header_move = () => {
 
         <nav className="nav-container">
           <div className="nav-links">
-            <Link to={"/"} className="nav-link">
+            <Link to={"/search"} className="nav-link">
               <button className="nav-button">
                 <IoMdSearch className="nav-icon" />
                 <span>Search</span>
