@@ -15,6 +15,7 @@ const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
 const userRoutes = require("./routes/user");
 const searchRoutes = require("./routes/search");
+const recommendRoutes = require("./routes/recommend");
 
 const genres = [
   {
@@ -134,8 +135,8 @@ app.get("/api/genre", (request, response) => {
   response.json(genres);
 });
 app.use("/api/user", userRoutes);
-
 app.use("/api/search", searchRoutes);
+app.use("/api/recommend", recommendRoutes);
 
 const PORT = 3001;
 app.listen(PORT, () => {

@@ -51,7 +51,7 @@ const Header_move = () => {
                 <span>Search</span>
               </button>
             </Link>
-            <Link to={"/"} className="nav-link">
+            <Link to={"/recommend"} className="nav-link">
               <button className="nav-button">
                 <MdRecommend className="nav-icon" />
                 <span>Recommend</span>

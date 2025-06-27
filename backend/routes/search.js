@@ -4,6 +4,6 @@ const { verifyJwt } = require("../middleware/verfityjwt");
 const router = express.Router();
 const { searchQuery } = require("../controller/searchController");
 
-router.get("/:query", searchQuery);
+router.get("/:query", verifyJwt, searchQuery);
 
 module.exports = router;

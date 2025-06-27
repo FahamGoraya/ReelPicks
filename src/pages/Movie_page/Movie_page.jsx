@@ -158,7 +158,7 @@ const Movie_page = () => {
           setSimilar(temp);
         }
       } catch (err) {
-        navigate("/");
+        navigate("/home");
         console.log(err);
       } finally {
         setLoading(false);
