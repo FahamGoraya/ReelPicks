@@ -1,22 +1,29 @@
 const express = require("express");
+const http = require("http");
 const User = require("./models/schema").User;
-const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require("path");
+
+const app = express();
+const server = http.createServer(app);
+
+// Serve static files from the frontend build directory
+// Update this path to match your frontend build location
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Middleware
 app.use(express.json());
-app.use(
-  cors({
-    origin: ["https://gimovies.onrender.com", "http://localhost:5173"],
-    credentials: true,
-  })
-);
 app.use(cookieParser());
+
+// Import routes
 const movieRoutes = require("./routes/movies");
 const tvRoutes = require("./routes/tv");
 const userRoutes = require("./routes/user");
 const searchRoutes = require("./routes/search");
 const recommendRoutes = require("./routes/recommend");
 
+// Genres data
 const genres = [
   {
     id: 28,
@@ -128,17 +135,25 @@ const genres = [
   },
 ];
 
+// API routes
 app.use("/api/movies", movieRoutes);
 app.use("/api/tv", tvRoutes);
-
-app.get("/api/genre", (request, response) => {
-  response.json(genres);
-});
 app.use("/api/user", userRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/recommend", recommendRoutes);
 
+app.get("/api/genre", (request, response) => {
+  response.json(genres);
+});
+
+// Catch-all handler: send back React's index.html file for any non-API routes
+// This enables client-side routing to work properly
+app.get(/(.*)/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
+});
+
 const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+
+server.listen(PORT, () => {
+  console.log("Server running on http://localhost:" + PORT);
 });
