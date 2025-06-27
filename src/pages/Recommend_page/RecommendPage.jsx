@@ -183,7 +183,7 @@ const RecommendPage = () => {
       const promise = await fetch(
         `https://reelpicks-dnc0.onrender.com/movies/search/${response.data.Movie}`,
         {
-          method: "GET",
+          method: "POST",
           credentials: "include",
         }
       );
