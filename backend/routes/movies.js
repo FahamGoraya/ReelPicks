@@ -10,6 +10,7 @@ const {
   getByIdInfo,
   getByIdVid,
   getMoiveSimiliarbyId,
+  getReviews,
 } = require("../controller/movieController");
 
 router.get("/trend", verifyJwt, getTrend);
@@ -19,5 +20,5 @@ router.get("/:id/info", verifyJwt, getByIdInfo);
 router.get("/:id/img", verifyJwt, getByIdImg);
 router.get("/:id/vid", verifyJwt, getByIdVid);
 router.get("/:id/similar", verifyJwt, getMoiveSimiliarbyId);
-
+router.get("/:id/reviews", verifyJwt, getReviews);
 module.exports = router;
