@@ -181,7 +181,7 @@ const RecommendPage = () => {
       );
       setPrevious((prev) => prev.concat(response.data.Movie));
       const promise = await fetch(
-        `https://reelpicks-dnc0.onrender.com/movies/search/${response.data.Movie}`,
+        `https://reelpicks-dnc0.onrender.com/api/movies/search/${response.data.Movie}`,
         {
           method: "POST",
           credentials: "include",
