@@ -12,7 +12,7 @@ const getTvidInfo = async (req, res) => {
   const id = req.params.id;
   const url = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
 
-  fetch(url, getOptions())
+  await fetch(url, getOptions())
     .then((r) => r.json())
     .then((data) => res.json(data))
     .catch((err) => console.error(err));
@@ -22,7 +22,7 @@ const getTvidImg = async (req, res) => {
   const id = req.params.id;
   const url = `https://api.themoviedb.org/3/tv/${id}/images`;
 
-  fetch(url, getOptions())
+  await fetch(url, getOptions())
     .then((r) => r.json())
     .then((data) => res.json(data))
     .catch((err) => console.error(err));
@@ -32,7 +32,7 @@ const getTvidVig = async (req, res) => {
   const id = req.params.id;
   const url = `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`;
 
-  fetch(url, getOptions())
+  await fetch(url, getOptions())
     .then((r) => r.json())
     .then((data) => res.json(data))
     .catch((err) => console.error(err));

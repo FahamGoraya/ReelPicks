@@ -20,6 +20,6 @@ router.get("/:id/info", verifyJwt, getByIdInfo);
 router.get("/:id/img", verifyJwt, getByIdImg);
 router.get("/:id/vid", verifyJwt, getByIdVid);
 router.get("/:id/similar", verifyJwt, getMoiveSimiliarbyId);
-router.get("/search/:name", verifyJwt, getMovieByName);
+router.post("/search/:name", verifyJwt, getMovieByName);
 
 module.exports = router;
