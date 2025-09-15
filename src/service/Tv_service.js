@@ -51,9 +51,17 @@ const getTvVid = (id) => {
     });
 };
 
+const getTvReviews = (id) => {
+  return axios
+    .get(`${Backend_URL}api/movies/${id}/reviews`, {
+      withCredentials: true,
+    })
+    .then((v) => v.data);
+};
 export default {
   getTvImg,
   getTvDetails,
   getTvVid,
   getTvSimiliarbyId,
+  getTvReviews,
 };

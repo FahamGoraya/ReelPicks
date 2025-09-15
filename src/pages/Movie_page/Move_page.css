@@ -116,6 +116,16 @@
   margin-bottom: 0;
 }
 
+ .review{
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  max-width: 100%;
+  margin-bottom: 0;
+  font-family: "DM Sans", sans-serif;
+ }
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .description-container {

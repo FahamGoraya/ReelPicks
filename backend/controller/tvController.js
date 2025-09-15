@@ -53,9 +53,21 @@ const getTvSimiliarbyId = async (req, res) => {
   data.results = result;
   res.json(data);
 };
+const getTvReviews = async (req, res) => {
+  const url = 'https://api.themoviedb.org/3/movie/movie_id/reviews?language=en-US&page=1';
+  const options = {method: 'GET', headers: {accept: 'application/json'}};
+
+
+  fetch(url, options)
+  .then(res => res.json())
+  .then(json => res.json(json))
+  .catch(err => console.error(err));
+};
+
 module.exports = {
   getTvidInfo,
   getTvidImg,
   getTvidVig,
   getTvSimiliarbyId,
+  getTvReviews,
 };

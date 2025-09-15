@@ -95,6 +95,15 @@ const Fillter_movie_genre = (genre, genre_id) => {
   return ans;
 };
 
+const getMovieReviews = (id) => {
+  return axios
+    .get(`${Backend_URL}api/movies/${id}/reviews`, {
+      withCredentials: true,
+    })
+    .then((v) => v.data);
+};
+
+
 export default {
   getTrend,
   getTop,
@@ -105,4 +114,5 @@ export default {
   getMovieImg,
   getMovieVid,
   getMoiveSimiliarbyId,
+  getMovieReviews,
 };

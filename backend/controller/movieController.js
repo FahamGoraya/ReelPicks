@@ -88,6 +88,15 @@ const getMovieByName = async (req, res) => {
     .then((data) => res.json(data.results[0]))
     .catch((err) => console.error(err));
 };
+const getReviews = async (req, res) => {
+  const id = req.params.id;
+  const url = `https://api.themoviedb.org/3/movie/${id}/reviews?language=en-US&page=1`;
+
+  fetch(url, getOptions())
+    .then((res) => res.json())
+    .then((json) => res.json(json))
+    .catch((err) => console.error(err));
+};
 
 module.exports = {
   getTrend,
@@ -98,4 +107,5 @@ module.exports = {
   getByIdVid,
   getMoiveSimiliarbyId,
   getMovieByName,
+  getReviews,
 };

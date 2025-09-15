@@ -11,6 +11,7 @@ const {
   getByIdVid,
   getMoiveSimiliarbyId,
   getMovieByName,
+  getReviews,
 } = require("../controller/movieController");
 
 router.get("/trend", verifyJwt, getTrend);
@@ -22,4 +23,5 @@ router.get("/:id/vid", verifyJwt, getByIdVid);
 router.get("/:id/similar", verifyJwt, getMoiveSimiliarbyId);
 router.post("/search/:name", verifyJwt, getMovieByName);
 
+router.get("/:id/reviews", verifyJwt, getReviews);
 module.exports = router;
