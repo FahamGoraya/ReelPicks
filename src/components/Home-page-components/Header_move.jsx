@@ -57,7 +57,7 @@ const Header_move = () => {
                 <span>Recommend</span>
               </button>
             </Link>
-            <Link to={"/"} className="nav-link">
+            <Link to={"/about"} className="nav-link">
               <button className="nav-button">
                 <IoIosInformationCircle className="nav-icon" />
                 <span>About</span>

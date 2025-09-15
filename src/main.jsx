@@ -8,6 +8,7 @@ import Movie_page from "./pages/Movie_page/Movie_page.jsx";
 import Signup_page from "./pages/Signup_page/Signup.jsx";
 import SearchPage from "./pages/Search_page/Search.jsx";
 import RecommendPage from "./pages/Recommend_page/RecommendPage.jsx";
+import About_Page from "./pages/About_page/About_Page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/recommend",
     element: <RecommendPage />,
+  },
+  {
+    path: "/about",
+    element: <About_Page />,
   },
 ]);
 
