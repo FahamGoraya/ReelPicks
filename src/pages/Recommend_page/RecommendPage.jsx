@@ -173,7 +173,7 @@ const RecommendPage = () => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://https://reelpicks-dnc0.onrender.com/api/recommend",
+        "https://reelpicks-dnc0.onrender.com/api/recommend",
         {
           singleMovie: singleMovie,
           previous: previous,
@@ -181,7 +181,7 @@ const RecommendPage = () => {
       );
       setPrevious((prev) => prev.concat(response.data.Movie));
       const promise = await fetch(
-        `http://https://reelpicks-dnc0.onrender.com/api/movies/search/${response.data.Movie}`,
+        `https://reelpicks-dnc0.onrender.com/api/movies/search/${response.data.Movie}`,
         {
           method: "POST",
           credentials: "include",
