@@ -44,13 +44,10 @@ function SearchPage() {
     setLoading(true);
     setHasSearched(true);
     try {
-      let response = await fetch(
-        `https://reelpicks-dnc0.onrender.com/api/search/${query}`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      let response = await fetch(`http://localhost:3001/api/search/${query}`, {
+        method: "GET",
+        credentials: "include",
+      });
       const results = await response.json();
 
       // Handle the API response structure

@@ -9,12 +9,11 @@ const userLogin = async (req, res) => {
   try {
     const userExists = await User.findOne({ email: user });
     const pass = decrypt(userExists.password);
-    console.log("User exists:", pass);
     if (
       userExists.email === user &&
       decrypt(userExists.password) === password
     ) {
-      const token = jwt.sign({ user: userExists }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ id: userExists._id }, process.env.JWT_SECRET, {
         expiresIn: "1h",
       });
 

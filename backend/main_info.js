@@ -5,12 +5,52 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 
+// Load environment variables
+require("dotenv").config();
+
 const app = express();
 const server = http.createServer(app);
 
 // Serve static files from the frontend build directory
 // Update this path to match your frontend build location
 app.use(express.static(path.join(__dirname, "../dist")));
+
+// CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173", // Vite dev server
+  "http://localhost:3000", // Alternative local dev server
+  "http://localhost:3001", // Your production frontend URL
+];
+
+// Add environment-specific origins
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        console.log("CORS blocked origin:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies to be sent
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Cookie",
+      "X-Requested-With",
+    ],
+    exposedHeaders: ["Set-Cookie"],
+  })
+);
 
 // Middleware
 app.use(express.json());
@@ -152,8 +192,9 @@ app.get(/(.*)/, (req, res) => {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
   console.log("Server running on http://localhost:" + PORT);
+  console.log("Allowed CORS origins:", allowedOrigins);
 });
