@@ -10,7 +10,7 @@ import Slider from "react-slick";
 import Display_movies_without_info from "../Home-page-components/Display_movies_without_info";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import ReviewsCarousel from "./ReviewInfo";
+import ReviewInfo from "./ReviewInfo";
 
 const Movie_description = ({ details, type, reviews }) => {
   // Helper function to format genres
@@ -110,7 +110,7 @@ const Movie_description = ({ details, type, reviews }) => {
         
         <div className="review">
           <span className="description-label">Reviews: </span>
-          {ReviewsCarousel(reviews)}
+          <ReviewInfo reviews/>
         </div>
       </div>
    

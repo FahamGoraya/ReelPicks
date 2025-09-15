@@ -1,8 +1,14 @@
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ReviewInfo.css";
 
 import "../Home-page-components/Header_move";
+import Header_move from "../Home-page-components/Header_move";
+import Movies_service from "../../service/Movies_service";
+import Tv_service from "../../service/Tv_service";
 import Slider from "react-slick";
+import Display_movies_without_info from "../Home-page-components/Display_movies_without_info";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
@@ -19,11 +25,13 @@ const ReviewInfo = (reviews) => {
     dotsClass: "slick-dots custom-dots",
   };
 
+  // Helper function to truncate long reviews
   const truncateReview = (text, maxLength = 500) => {
     if (text.length <= maxLength) return text;
     return text.slice(0, maxLength) + "...";
   };
 
+  // Toggle expanded state for a specific review
   const toggleExpanded = (reviewId) => {
     setExpandedReviews(prev => ({
       ...prev,
@@ -31,6 +39,7 @@ const ReviewInfo = (reviews) => {
     }));
   };
 
+  // Helper function to format date
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
