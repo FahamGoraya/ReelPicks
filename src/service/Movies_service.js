@@ -103,7 +103,6 @@ const getMovieReviews = (id) => {
     .then((v) => v.data);
 };
 
-
 export default {
   getTrend,
   getTop,

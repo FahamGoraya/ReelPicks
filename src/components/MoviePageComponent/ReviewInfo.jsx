@@ -12,7 +12,7 @@ import Display_movies_without_info from "../Home-page-components/Display_movies_
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-const ReviewInfo = (reviews) => {
+const ReviewInfo = ({ reviews, type }) => {
   const [expandedReviews, setExpandedReviews] = useState({});
 
   const settings = {
@@ -33,9 +33,9 @@ const ReviewInfo = (reviews) => {
 
   // Toggle expanded state for a specific review
   const toggleExpanded = (reviewId) => {
-    setExpandedReviews(prev => ({
+    setExpandedReviews((prev) => ({
       ...prev,
-      [reviewId]: !prev[reviewId]
+      [reviewId]: !prev[reviewId],
     }));
   };
 
@@ -49,30 +49,68 @@ const ReviewInfo = (reviews) => {
     });
   };
 
+  // Helper function to get content type label
+  const getContentTypeLabel = () => {
+    return type === "tv" ? "TV Show" : "Movie";
+  };
+
+  // Check if reviews exist and have results
+  if (!reviews) {
+    return (
+      <div className="no-reviews">
+        <p>Loading {getContentTypeLabel().toLowerCase()} reviews...</p>
+      </div>
+    );
+  }
+
   if (reviews.total_results > 0) {
     return (
       <div className="reviews-carousel-wrapper">
+        <div className="reviews-header">
+          <h3>
+            {getContentTypeLabel()} Reviews ({reviews.total_results})
+          </h3>
+        </div>
         <Slider {...settings}>
           {reviews.results.map((review) => (
             <div key={review.id}>
-              <div className="review-card">
+              <div className={`review-card ${type}-review`}>
                 <div className="review-header">
                   <div className="review-left">
                     <div className="avatar-container">
                       {review.author_details.avatar_path ? (
                         <img
                           className="avatar"
-                          src={`https://image.tmdb.org/t/p/w64_and_h64_face${review.author_details.avatar_path}`}
+                          src={
+                            review.author_details.avatar_path.startsWith(
+                              "/https"
+                            )
+                              ? review.author_details.avatar_path.substring(1)
+                              : `https://image.tmdb.org/t/p/w64_and_h64_face${review.author_details.avatar_path}`
+                          }
                           alt={`${review.author}'s avatar`}
+                          onError={(e) => {
+                            e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "flex";
+                          }}
                         />
-                      ) : (
-                        <div className="avatar-placeholder">
-                          {review.author.charAt(0).toUpperCase()}
-                        </div>
-                      )}
+                      ) : null}
+                      <div
+                        className="avatar-placeholder"
+                        style={{
+                          display: review.author_details.avatar_path
+                            ? "none"
+                            : "flex",
+                        }}
+                      >
+                        {review.author.charAt(0).toUpperCase()}
+                      </div>
                     </div>
                     <div className="author-info">
                       <strong className="author-name">{review.author}</strong>
+                      <span className="content-type-badge">
+                        {getContentTypeLabel()} Review
+                      </span>
                       {review.created_at && (
                         <span className="review-date">
                           {formatDate(review.created_at)}
@@ -80,7 +118,7 @@ const ReviewInfo = (reviews) => {
                       )}
                     </div>
                   </div>
-                  
+
                   {review.author_details.rating && (
                     <div className="rating-container">
                       <Rating
@@ -98,19 +136,20 @@ const ReviewInfo = (reviews) => {
 
                 <div className="review-content">
                   <p>
-                    {expandedReviews[review.id] 
-                      ? review.content 
-                      : truncateReview(review.content)
-                    }
+                    {expandedReviews[review.id]
+                      ? review.content
+                      : truncateReview(review.content)}
                   </p>
                 </div>
 
                 {review.content.length > 500 && (
-                  <button 
+                  <button
                     className="read-more-btn"
                     onClick={() => toggleExpanded(review.id)}
                   >
-                    {expandedReviews[review.id] ? 'Show Less' : 'Read Full Review'}
+                    {expandedReviews[review.id]
+                      ? "Show Less"
+                      : "Read Full Review"}
                   </button>
                 )}
               </div>
@@ -123,7 +162,12 @@ const ReviewInfo = (reviews) => {
 
   return (
     <div className="no-reviews">
-      <p>No reviews available yet.</p>
+      <p>No {getContentTypeLabel().toLowerCase()} reviews available yet.</p>
+      <small>
+        {type === "tv"
+          ? "TV show reviews may be limited. Check back later for more user reviews!"
+          : "Be the first to share your thoughts about this movie!"}
+      </small>
     </div>
   );
 };

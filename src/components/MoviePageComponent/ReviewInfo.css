@@ -8,6 +8,19 @@
   margin: 20px 0;
 }
 
+.reviews-header {
+  margin-bottom: 16px;
+}
+
+.reviews-header h3 {
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
 /* Individual review card */
 .review-card {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
@@ -22,8 +35,9 @@
   overflow: hidden;
 }
 
-.review-card::before {
-  content: '';
+/* Movie review styling */
+.review-card.movie-review::before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -34,9 +48,47 @@
   animation: gradientMove 3s ease-in-out infinite;
 }
 
+/* TV review styling */
+.review-card.tv-review::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #a855f7, #3b82f6, #06b6d4, #10b981);
+  background-size: 300% 100%;
+  animation: gradientMove 3s ease-in-out infinite;
+}
+
+.content-type-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+}
+
+.movie-review .content-type-badge {
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  color: white;
+}
+
+.tv-review .content-type-badge {
+  background: linear-gradient(90deg, #a855f7, #3b82f6);
+  color: white;
+}
+
 @keyframes gradientMove {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .review-card:hover {
@@ -101,14 +153,14 @@
   font-weight: 600;
   font-size: 16px;
   color: #ffffff;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   margin: 0;
 }
 
 .review-date {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* Rating section */
@@ -128,7 +180,7 @@
   font-size: 14px;
   color: #4ecdc4;
   font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -140,7 +192,7 @@
 .review-content p {
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.9);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 14px;
   margin: 0;
   text-align: justify;
@@ -159,7 +211,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -175,11 +227,22 @@
   text-align: center;
   padding: 40px 20px;
   color: rgba(255, 255, 255, 0.6);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 16px;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.no-reviews p {
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.no-reviews small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-style: italic;
 }
 
 /* Custom dots styling */
@@ -219,7 +282,8 @@
     gap: 12px;
   }
 
-  .avatar, .avatar-placeholder {
+  .avatar,
+  .avatar-placeholder {
     width: 48px;
     height: 48px;
   }
@@ -247,7 +311,8 @@
     gap: 10px;
   }
 
-  .avatar, .avatar-placeholder {
+  .avatar,
+  .avatar-placeholder {
     width: 40px;
     height: 40px;
   }

@@ -54,14 +54,16 @@ const getTvSimiliarbyId = async (req, res) => {
   res.json(data);
 };
 const getTvReviews = async (req, res) => {
-  const url = 'https://api.themoviedb.org/3/movie/movie_id/reviews?language=en-US&page=1';
-  const options = {method: 'GET', headers: {accept: 'application/json'}};
+  const id = req.params.id;
+  const url = `https://api.themoviedb.org/3/tv/${id}/reviews?language=en-US&page=1`;
 
-
-  fetch(url, options)
-  .then(res => res.json())
-  .then(json => res.json(json))
-  .catch(err => console.error(err));
+  await fetch(url, getOptions())
+    .then((response) => response.json())
+    .then((data) => res.json(data))
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Failed to fetch TV reviews" });
+    });
 };
 
 module.exports = {

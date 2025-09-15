@@ -1,8 +1,6 @@
-import { useParams } from "react-router";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-import "../../components/Home-page-components/Header_move";
 import Header_move from "../../components/Home-page-components/Header_move";
 import Movies_service from "../../service/Movies_service";
 import Tv_service from "../../service/Tv_service";
@@ -12,6 +10,9 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import ReviewInfo from "./ReviewInfo";
 
+// Add the CSS import for proper styling
+import "../../pages/Movie_page/Move_page.css";
+
 const Movie_description = ({ details, type, reviews }) => {
   // Helper function to format genres
   const formatGenres = (genres) => {
@@ -19,7 +20,7 @@ const Movie_description = ({ details, type, reviews }) => {
     return genres.map((genre) => genre.name).join(", ");
   };
 
-  // Helper function to format release date
+  // Helper function to format release/air date
   const formatReleaseDate = (details, type) => {
     let date;
     if (type === "movie") {
@@ -30,14 +31,11 @@ const Movie_description = ({ details, type, reviews }) => {
 
     if (!date) return "Not available";
 
-    // Format the date to be more readable
-    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    return new Date(date).toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
-
-    return formattedDate;
   };
 
   // Helper function to get runtime/episode info
@@ -56,64 +54,68 @@ const Movie_description = ({ details, type, reviews }) => {
 
   return (
     <div className="description-container">
-      
-        <div>
-          <div className="description-item">
-            <span className="description-label">Genre: </span>
-            <span className="description-value">
-              {formatGenres(details.genres)}
-            </span>
-          </div>
+      <div>
+        <div className="description-item">
+          <span className="description-label">Genre: </span>
+          <span className="description-value">
+            {formatGenres(details.genres)}
+          </span>
+        </div>
 
-          <div className="description-item">
-            <span className="description-label">
-              {type === "movie" ? "Release Date: " : "First Air Date: "}
-            </span>
-            <span className="description-value">
-              {formatReleaseDate(details, type)}
-            </span>
-          </div>
+        <div className="description-item">
+          <span className="description-label">
+            {type === "movie" ? "Release Date: " : "First Air Date: "}
+          </span>
+          <span className="description-value">
+            {formatReleaseDate(details, type)}
+          </span>
+        </div>
 
-          <div className="description-item">
-            <span className="description-label">
-              {type === "movie" ? "Runtime: " : "Episodes: "}
-            </span>
-            <span className="description-value">
-              {getRuntimeInfo(details, type)}
-            </span>
-          </div>
+        <div className="description-item">
+          <span className="description-label">
+            {type === "movie" ? "Runtime: " : "Episodes: "}
+          </span>
+          <span className="description-value">
+            {getRuntimeInfo(details, type)}
+          </span>
+        </div>
 
-          <div className="description-item rating-item">
-            <span className="description-label">Rating: </span>
-            <div className="rating-container">
-              <Rating
-                className="movie-rating"
-                style={{ maxWidth: 150 }}
-                value={(details.vote_average / 10) * 5}
-                readOnly
-              />
-              <span className="rating-text">
-                {details.vote_average
-                  ? `${(details.vote_average / 2).toFixed(1)}/5`
-                  : ""}{" "}
-                ({details.vote_count ? details.vote_count.toLocaleString() : "N/A"})
-              </span>
-            </div>
-          </div>
-          <div className="description-item overview">
-            <span className="description-label">Overview: </span>
-            <p className="description-overview">
-              {details.overview || "No overview available."}
-            </p>
+        <div className="description-item rating-item">
+          <span className="description-label">Rating: </span>
+          <div className="rating-container">
+            <Rating
+              className="movie-rating"
+              style={{ maxWidth: 100 }}
+              value={(details.vote_average / 10) * 5}
+              readOnly
+            />
+            <span className="rating-text">
+              {details.vote_average
+                ? `${(details.vote_average / 2).toFixed(1)}/5`
+                : ""}{" "}
+              (
+              {details.vote_count ? details.vote_count.toLocaleString() : "N/A"}
+              )
+            </span>
           </div>
         </div>
-        
-        <div className="review">
-          <span className="description-label">Reviews: </span>
-          <ReviewInfo reviews/>
+
+        <div className="description-item overview">
+          <span className="description-label">Overview: </span>
+          <p className="description-overview">
+            {details.overview || "No overview available."}
+          </p>
         </div>
       </div>
-   
+
+      <div className="review">
+        <span className="description-label">
+          {type === "tv" ? "TV Show Reviews: " : "Movie Reviews: "}
+        </span>
+        <ReviewInfo reviews={reviews} type={type} />
+      </div>
+    </div>
   );
 };
+
 export default Movie_description;

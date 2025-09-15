@@ -54,8 +54,13 @@ const Movie_page = () => {
           setVideos(temp);
           temp = await Movies_service.getMoiveSimiliarbyId(id);
           setSimilar(temp);
-          temp = await Movies_service.getMovieReviews(id);
-          setReviews(temp);
+          try {
+            temp = await Movies_service.getMovieReviews(id);
+            setReviews(temp);
+          } catch (reviewError) {
+            console.warn("Failed to load movie reviews:", reviewError);
+            setReviews({ total_results: 0, results: [] });
+          }
         } else if (type === "tv") {
           temp = await Tv_service.getTvDetails(id);
           setDetails(temp);
@@ -63,8 +68,13 @@ const Movie_page = () => {
           setVideos(temp);
           temp = await Tv_service.getTvSimiliarbyId(id);
           setSimilar(temp);
-          temp = await Tv_service.getTvReviews(id);
-          setReviews(temp);
+          try {
+            temp = await Tv_service.getTvReviews(id);
+            setReviews(temp);
+          } catch (reviewError) {
+            console.warn("Failed to load TV reviews:", reviewError);
+            setReviews({ total_results: 0, results: [] });
+          }
         }
       } catch (err) {
         navigate("/");
@@ -152,7 +162,7 @@ const Movie_page = () => {
         )}
       </div>
 
-      <Movie_description details={Details} type={type} reviews={Reviews}/>
+      <Movie_description details={Details} type={type} reviews={Reviews} />
 
       <h1 className="Movieheadingid">Similar To</h1>
       <div className="Similar_slider_div">

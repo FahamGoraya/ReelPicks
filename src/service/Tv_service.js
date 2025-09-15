@@ -53,7 +53,7 @@ const getTvVid = (id) => {
 
 const getTvReviews = (id) => {
   return axios
-    .get(`${Backend_URL}api/movies/${id}/reviews`, {
+    .get(`${Backend_URL}api/tv/${id}/reviews`, {
       withCredentials: true,
     })
     .then((v) => v.data);

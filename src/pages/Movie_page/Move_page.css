@@ -116,7 +116,7 @@
   margin-bottom: 0;
 }
 
- .review{
+.review {
   margin-top: 8px;
   font-weight: 400;
   font-size: 1rem;
@@ -125,7 +125,7 @@
   max-width: 100%;
   margin-bottom: 0;
   font-family: "DM Sans", sans-serif;
- }
+}
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .description-container {
