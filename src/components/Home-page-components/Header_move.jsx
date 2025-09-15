@@ -12,13 +12,16 @@ const Header_move = () => {
 
   const handleLogout = async (event) => {
     try {
-      const response = await fetch("http://localhost:3001/api/user/logout", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        "http://https://reelpicks-dnc0.onrender.com/api/user/logout",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         navigate("/");

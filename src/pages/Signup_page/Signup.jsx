@@ -16,6 +16,27 @@ function Signup_page() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch(
+          "http://https://reelpicks-dnc0.onrender.com/api/user/loggedin",
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        const data = await response.json();
+        if (data.success) {
+          navigae("/home");
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
+      }
+    };
+    checkLoginStatus();
+  }, []);
+
+  useEffect(() => {
     document.body.classList.add("Signup-bg");
 
     return () => {
@@ -35,18 +56,21 @@ function Signup_page() {
     }
 
     try {
-      let response = await fetch("http://localhost:3001/api/user/signup", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          username: username,
-        }),
-      });
+      let response = await fetch(
+        "http://https://reelpicks-dnc0.onrender.com/api/user/signup",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            username: username,
+          }),
+        }
+      );
       response = await response.json();
       if (response.success) {
         navigae("/");
