@@ -17,7 +17,7 @@ function Login_page() {
     const checkLoginStatus = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/api/user/loggedin",
+          "https://reelpicks-dnc0.onrender.com/api/user/loggedin",
           {
             method: "GET",
             credentials: "include",
@@ -54,14 +54,17 @@ function Login_page() {
     }
 
     try {
-      let response = await fetch("http://localhost:3001/api/user/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: email, password: password }),
-      });
+      let response = await fetch(
+        "https://reelpicks-dnc0.onrender.com/api/user/login",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user: email, password: password }),
+        }
+      );
       response = await response.json();
       if (response.success) {
         navigae("/home");

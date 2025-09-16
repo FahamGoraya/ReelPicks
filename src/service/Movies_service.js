@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Backend_URL = "http://localhost:3001/";
+const Backend_URL = "https://reelpicks-dnc0.onrender.com/";
 
 const getTrend = () => {
   return axios
@@ -91,7 +91,7 @@ const Fillter_movie_genre = (genre, genre_id) => {
   if (!genre_id || !Array.isArray(genre_id) || genre_id.length === 0) {
     return [];
   }
-  
+
   // Check if genre is valid
   if (!genre || !Array.isArray(genre)) {
     return [];
