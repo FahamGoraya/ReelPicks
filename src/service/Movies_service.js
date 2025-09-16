@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Backend_URL = "https://reelpicks-dnc0.onrender.com/";
+const Backend_URL = "http://localhost:3001/";
 
 const getTrend = () => {
   return axios
@@ -87,6 +87,16 @@ const getMoiveSimiliarbyId = (id) => {
 };
 
 const Fillter_movie_genre = (genre, genre_id) => {
+  // Check if genre_id is valid and iterable
+  if (!genre_id || !Array.isArray(genre_id) || genre_id.length === 0) {
+    return [];
+  }
+  
+  // Check if genre is valid
+  if (!genre || !Array.isArray(genre)) {
+    return [];
+  }
+
   let ans = [];
   for (let g of genre_id) {
     const matched = genre.filter((m) => m.id === g);

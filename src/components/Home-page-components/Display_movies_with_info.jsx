@@ -9,8 +9,8 @@ import "./Display_movies_with_info.css";
 const Display_movies_with_info = (props) => {
   const base = "https://image.tmdb.org/t/p/original";
   const curr_genre = Movies_service.Fillter_movie_genre(
-    props.genre,
-    props.n.genre_ids
+    props.genre || [],
+    props.n.genre_ids || []
   );
   const dateStr = !!!props.n.release_date
     ? props.n.first_air_date
@@ -87,25 +87,39 @@ const Display_movies_with_info = (props) => {
 
               <div className="movie-genres">
                 <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-                  {curr_genre.map((genre, index) => (
+                  {curr_genre && curr_genre.length > 0 ? (
+                    curr_genre.map((genre, index) => (
+                      <Chip
+                        key={index}
+                        label={genre.name}
+                        size="small"
+                        className="genre-chip"
+                        sx={{
+                          background: "linear-gradient(45deg, #60a5fa, #a78bfa)",
+                          color: "white",
+                          fontWeight: 500,
+                          fontSize: "0.8rem",
+                          "&:hover": {
+                            background:
+                              "linear-gradient(45deg, #3b82f6, #8b5cf6)",
+                            transform: "translateY(-1px)",
+                          },
+                        }}
+                      />
+                    ))
+                  ) : (
                     <Chip
-                      key={index}
-                      label={genre.name}
+                      label="No genres available"
                       size="small"
                       className="genre-chip"
                       sx={{
-                        background: "linear-gradient(45deg, #60a5fa, #a78bfa)",
-                        color: "white",
+                        background: "rgba(255,255,255,0.1)",
+                        color: "rgba(255,255,255,0.7)",
                         fontWeight: 500,
                         fontSize: "0.8rem",
-                        "&:hover": {
-                          background:
-                            "linear-gradient(45deg, #3b82f6, #8b5cf6)",
-                          transform: "translateY(-1px)",
-                        },
                       }}
                     />
-                  ))}
+                  )}
                 </Stack>
               </div>
 
