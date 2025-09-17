@@ -19,7 +19,7 @@ function Signup_page() {
     const checkLoginStatus = async () => {
       try {
         const response = await fetch(
-          "https://reelpicks-dnc0.onrender.com//api/user/loggedin",
+          "https://reelpicks-dnc0.onrender.com/api/user/loggedin",
           {
             method: "GET",
             credentials: "include",
@@ -57,7 +57,7 @@ function Signup_page() {
 
     try {
       let response = await fetch(
-        "https://reelpicks-dnc0.onrender.com//api/user/signup",
+        "https://reelpicks-dnc0.onrender.com/api/user/signup",
         {
           method: "POST",
           credentials: "include",

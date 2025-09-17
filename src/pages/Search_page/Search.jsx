@@ -45,7 +45,7 @@ function SearchPage() {
     setHasSearched(true);
     try {
       let response = await fetch(
-        `https://reelpicks-dnc0.onrender.com//api/search/${query}`,
+        `https://reelpicks-dnc0.onrender.com/api/search/${query}`,
         {
           method: "GET",
           credentials: "include",

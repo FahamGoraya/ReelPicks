@@ -13,7 +13,7 @@ const Header_move = () => {
   const handleLogout = async (event) => {
     try {
       const response = await fetch(
-        "https://reelpicks-dnc0.onrender.com//api/user/logout",
+        "https://reelpicks-dnc0.onrender.com/api/user/logout",
         {
           method: "POST",
           credentials: "include",
