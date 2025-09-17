@@ -57,7 +57,7 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
-  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+  background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -163,7 +163,7 @@
 }
 
 .no-button {
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
   background-size: 300% 300%;
   color: #ffffff;
   border-color: transparent;

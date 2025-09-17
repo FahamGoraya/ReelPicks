@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Backend_URL = "https://reelpicks-dnc0.onrender.com/";
+const Backend_URL = "https://reelpicks-dnc0.onrender.com//";
 
 const getTrend = () => {
   return axios

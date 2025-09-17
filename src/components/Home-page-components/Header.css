@@ -16,8 +16,8 @@
     90deg,
     transparent 0%,
     #5ce1e6 20%,
-    #ff6b6b 50%,
-    #ffd93d 80%,
+    #38bdf8 50%, /* blue/cyan */
+    #06b6d4 80%, /* teal */
     transparent 100%
   );
   animation: shimmer 3s ease-in-out infinite;

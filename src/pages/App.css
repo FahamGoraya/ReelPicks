@@ -19,17 +19,17 @@
   bottom: 0;
   background: radial-gradient(
       circle at 20% 80%,
-      rgba(120, 119, 198, 0.15) 0%,
+      rgba(96, 165, 250, 0.15) 0%, /* blue-400 */
       transparent 60%
     ),
     radial-gradient(
       circle at 80% 20%,
-      rgba(255, 119, 198, 0.08) 0%,
+      rgba(16, 185, 129, 0.08) 0%, /* teal-400 */
       transparent 60%
     ),
     radial-gradient(
       circle at 40% 40%,
-      rgba(120, 219, 226, 0.05) 0%,
+      rgba(6, 182, 212, 0.05) 0%, /* cyan-400 */
       transparent 60%
     );
   pointer-events: none;
@@ -53,9 +53,10 @@
   font-weight: 600;
   text-align: center;
   margin-bottom: 2rem;
-  background: linear-gradient(45deg, #60a5fa, #a78bfa, #f472b6);
+  background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient 3s ease infinite, pulse 2s ease-in-out infinite;
 }
@@ -65,7 +66,7 @@
   display: block;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  background: linear-gradient(90deg, #2193b0, #6dd5ed);
   border-radius: 2px;
   margin: 1rem auto;
   animation: loading 1.5s ease-in-out infinite;
@@ -138,7 +139,7 @@
   left: 0;
   width: 60px;
   height: 4px;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  background: linear-gradient(90deg, #2193b0, #6dd5ed);
   border-radius: 2px;
 }
 
@@ -205,9 +206,18 @@
 
 .movieGenre {
   font-family: "DM Sans", sans-serif;
-  color: #f3f4f6;
+  color: #fff;
   font-size: 0.9rem;
   font-weight: 500;
+  background: linear-gradient(90deg, #2193b0, #6dd5ed);
+  border-radius: 999px;
+  padding: 0.25em 1em;
+  margin: 0 0.25em 0.5em 0;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(6,182,212,0.10);
+  letter-spacing: 0.5px;
+  transition: background 0.3s;
+  border: none;
 }
 
 .MovieInfoimg {
